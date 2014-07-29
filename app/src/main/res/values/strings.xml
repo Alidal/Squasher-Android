@@ -3,7 +3,13 @@
 
     <string name="app_name">Squasher</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Titles -->
+    <string name="account">My Account</string>
     <string name="news">News</string>
+    <string name="tournaments">Tournaments</string>
+    <string name="courts">Courts</string>
+    <string name="ratings">Ratings</string>
     <string name="settings">Settings</string>
 
     <!-- Nav Drawer Menu Items -->

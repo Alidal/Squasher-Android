@@ -1,6 +1,6 @@
-package com.vladsid.squasher.app;
+package com.vladsid.squasher.app.menu;
 
-public class NavDrawerItem {
+public class MenuItem {
 
 	private String title;
 	private int icon;
@@ -8,14 +8,14 @@ public class NavDrawerItem {
 	// boolean to set visibility of the counter
 	private boolean isCounterVisible = false;
 
-	public NavDrawerItem(){}
+	public MenuItem(){}
 
-	public NavDrawerItem(String title, int icon){
+	public MenuItem(String title, int icon){
 		this.title = title;
 		this.icon = icon;
 	}
 
-	public NavDrawerItem(String title, int icon, boolean isCounterVisible, String count){
+	public MenuItem(String title, int icon, boolean isCounterVisible, String count){
 		this.title = title;
 		this.icon = icon;
 		this.isCounterVisible = isCounterVisible;

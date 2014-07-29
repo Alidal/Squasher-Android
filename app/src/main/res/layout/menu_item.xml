@@ -27,7 +27,7 @@
             android:layout_toRightOf="@+id/menuItemIcon"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:maxHeight="?android:attr/listPreferredItemHeightSmall"
-            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textAppearance="?android:attr/textAppearanceListItem"
             android:textColor="@color/list_item_title"
             android:gravity="center_vertical"
             android:paddingRight="40dp"/>

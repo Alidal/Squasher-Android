@@ -1,7 +1,7 @@
-package com.vladsid.squasher.app;
+package com.vladsid.squasher.app.menu;
 
 import android.graphics.Typeface;
-import com.vladsid.squasher.app.NavDrawerItem;
+
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -12,28 +12,29 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.vladsid.squasher.app.R;
 
-public class NavDrawerListAdapter extends BaseAdapter {
+public class MenuListAdapter extends BaseAdapter {
 
 	private Context context;
-	private ArrayList<NavDrawerItem> navDrawerItems;
+	private ArrayList<MenuItem> menuItems;
 	private Typeface tf;
 
-	public NavDrawerListAdapter(Context context, ArrayList<NavDrawerItem> navDrawerItems){
+	public MenuListAdapter(Context context, ArrayList<MenuItem> menuItems){
 		this.context = context;
-		this.navDrawerItems = navDrawerItems;
+		this.menuItems = menuItems;
 		tf = Typeface.createFromAsset(context.getAssets(), "fonts/MyriadPro-Light.ttf");
 
 	}
 
 	@Override
 	public int getCount() {
-		return navDrawerItems.size();
+		return menuItems.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return navDrawerItems.get(position);
+		return menuItems.get(position);
 	}
 
 	@Override
@@ -45,23 +46,23 @@ public class NavDrawerListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			convertView = mInflater.inflate(R.layout.drawer_list_item, null);
+			convertView = mInflater.inflate(R.layout.menu_item, null);
 		}
 
 		ImageView imgIcon = (ImageView) convertView.findViewById(R.id.menuItemIcon);
 		TextView txtTitle = (TextView) convertView.findViewById(R.id.menuItemTitle);
 		TextView txtCount = (TextView) convertView.findViewById(R.id.counter);
 
-		imgIcon.setImageResource(navDrawerItems.get(position).getIcon());
-		txtTitle.setText(navDrawerItems.get(position).getTitle());
+		imgIcon.setImageResource(menuItems.get(position).getIcon());
+		txtTitle.setText(menuItems.get(position).getTitle());
 
 		//setting custom typeface
 		txtTitle.setTypeface(tf);
 
 		// displaying count
 		// check whether it set visible or not
-		if(navDrawerItems.get(position).getCounterVisibility()){
-			txtCount.setText(navDrawerItems.get(position).getCount());
+		if(menuItems.get(position).getCounterVisibility()){
+			txtCount.setText(menuItems.get(position).getCount());
 		}
 		else{
 			// hide the counter view
