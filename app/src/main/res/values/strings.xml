@@ -5,15 +5,22 @@
     <string name="action_settings">Settings</string>
 
     <!-- Titles -->
-    <string name="account">My Account</string>
+    <string name="account">My account</string>
     <string name="news">News</string>
     <string name="tournaments">Tournaments</string>
     <string name="courts">Courts</string>
     <string name="ratings">Ratings</string>
     <string name="settings">Settings</string>
 
+    <string name="date">Date of birth:</string>
+    <string name="sex">Sex:</string>
+    <string name="country">Country:</string>
+    <string name="city">City:</string>
+    <string name="fav_club">Favourite club:</string>
+    <string name="work">Work:</string>
+
     <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
+    <string-array name="menu_items">
         <item >My Account</item>
         <item >News</item>
         <item >Tournaments</item>
@@ -23,8 +30,8 @@
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_launcher</item>
+    <array name="menu_icons">
+        <item>@drawable/ic_account</item>
         <item>@drawable/ic_news</item>
         <item>@drawable/ic_tournaments</item>
         <item>@drawable/ic_courts</item>
