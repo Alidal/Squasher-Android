@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.vladsid.squasher.app.asyncTask.ImageDownloaderTask;
 import com.vladsid.squasher.app.news.NewsItem;
 
+import static com.vladsid.squasher.app.FontOverrider.applyFont;
+
 public class NewsDetailsActivity extends Activity {
 
 	private NewsItem news;
@@ -19,6 +21,7 @@ public class NewsDetailsActivity extends Activity {
 		setContentView(R.layout.activity_news_details);
 
 		news = (NewsItem) this.getIntent().getSerializableExtra("news");
+		applyFont(this, findViewById(R.id.news_details_layout), "fonts/MyriadPro-Light.ttf");
 
 		if (null != news) {
 			ImageView thumb = (ImageView) findViewById(R.id.newsFullPicture);

@@ -29,9 +29,11 @@
             android:maxHeight="?android:attr/listPreferredItemHeightSmall"
             android:textAppearance="?android:attr/textAppearanceListItem"
             android:textColor="@color/list_item_title"
-            android:gravity="center_vertical|clip_vertical|fill_vertical"
+            android:gravity="center_vertical"
             android:paddingRight="40dp"
-            android:layout_alignBaseline="@+id/menuItemIcon"/>
+            android:layout_alignBaseline="@+id/menuItemIcon"
+            android:layout_alignTop="@+id/menuItemIcon"
+            android:layout_alignBottom="@+id/menuItemIcon"/>
 
     <TextView android:id="@+id/counter"
               android:layout_width="wrap_content"

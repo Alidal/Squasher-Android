@@ -11,8 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.vladsid.squasher.app.menu.*;
 import com.vladsid.squasher.app.fragments.*;
 
@@ -51,7 +53,8 @@ public class NewsActivity extends Activity {
 		//initialization of menu items
 		initMenu();
 		//initialization of news items
-		initNews();
+		if(newsItems.size() == 0)
+			initNews();
 	}
 
 	/**
@@ -63,8 +66,7 @@ public class NewsActivity extends Activity {
 
 		String url = "http://192.168.0.3/news";
 		new JSONDownloaderTask().execute(url);
-
-		mNewsList.setAdapter(new NewsListAdapter(this, newsItems));
+		NewsListAdapter mAdapter = new NewsListAdapter(this, newsItems);
 		mNewsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -74,9 +76,12 @@ public class NewsActivity extends Activity {
 
 				Intent intent = new Intent(NewsActivity.this, NewsDetailsActivity.class);
 				intent.putExtra("news", newsData);
+				Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_LONG).show();
 				startActivity(intent);
 			}
 		});
+		mAdapter.notifyDataSetChanged();
+		mNewsList.setAdapter(mAdapter);
 	}
 
 	private void initMenu(){
@@ -208,12 +213,6 @@ public class NewsActivity extends Activity {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				is = httpEntity.getContent();
 
-			/*BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"), 8);
-			StringBuilder sb = new StringBuilder();
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}*/
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
