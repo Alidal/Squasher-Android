@@ -3,6 +3,7 @@ package com.vladsid.squasher.app.asyncTask;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
+import com.vladsid.squasher.app.R;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -15,11 +16,14 @@ import android.util.Log;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 
+import static com.vladsid.squasher.app.MainActivity.getCroppedBitmap;
+
 public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 	private final WeakReference<ImageView> imageViewReference;
-
-	public ImageDownloaderTask(ImageView imageView) {
+	private String str;
+	public ImageDownloaderTask(ImageView imageView, String st) {
 		imageViewReference = new WeakReference<ImageView>(imageView);
+		str = st;
 	}
 
 	@Override
@@ -41,7 +45,10 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 			if (imageView != null) {
 
 				if (bitmap != null) {
-					imageView.setImageBitmap(bitmap);
+					if (str == "circle")
+						imageView.setImageBitmap(getCroppedBitmap(bitmap));
+					else
+						imageView.setImageBitmap(bitmap);
 				} else {
 					//imageView.setImageDrawable(imageView.getContext().getResources().getDrawable(R.drawable.list_background));
 				}
@@ -59,8 +66,7 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 				HttpResponse response = client.execute(getRequest);
 				final int statusCode = response.getStatusLine().getStatusCode();
 				if (statusCode != HttpStatus.SC_OK) {
-					Log.w("ImageDownloader", "Error " + statusCode
-							+ " while retrieving bitmap from " + url);
+					Log.w("ImageDownloader", "Error " + statusCode	+ " while retrieving bitmap from " + url);
 					return null;
 				}
 

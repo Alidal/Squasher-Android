@@ -25,19 +25,22 @@ public class NewsDetailsActivity extends Activity {
 
 		if (null != news) {
 			ImageView thumb = (ImageView) findViewById(R.id.newsFullPicture);
-			new ImageDownloaderTask(thumb).execute(news.getFullPictureUrl());
+			new ImageDownloaderTask(thumb, "square").execute("http://213.111.120.224/img/" + news.getListPictureUrl());
 
 			TextView title = (TextView) findViewById(R.id.newsFullTitle);
 			title.setText(news.getTitle());
 			TextView date = (TextView) findViewById(R.id.newsFullDate);
 			date.setText(news.getDate());
 			TextView source = (TextView) findViewById(R.id.newsFullSource);
-			date.setText(news.getSource());
+			source.setText(news.getSource());
+			TextView content = (TextView) findViewById(R.id.newsFullContent);
+			content.setText(news.getContent());
 		}
 	}
 
 	public void onBackButtonClick(View v){
-		Intent intent = new Intent(NewsDetailsActivity.this, NewsActivity.class);
+		Intent intent = new Intent(NewsDetailsActivity.this, MainActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		startActivity(intent);
 	}
 }

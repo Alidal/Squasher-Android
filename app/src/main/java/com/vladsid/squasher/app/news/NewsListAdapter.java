@@ -1,10 +1,12 @@
 package com.vladsid.squasher.app.news;
 
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.vladsid.squasher.app.*;
 import com.vladsid.squasher.app.asyncTask.ImageDownloaderTask;
+
+import static com.vladsid.squasher.app.MainActivity.getCroppedBitmap;
 
 public class NewsListAdapter extends BaseAdapter {
 	private ArrayList<NewsItem> listData;
@@ -57,18 +61,16 @@ public class NewsListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		NewsItem newsItem = (NewsItem) listData.get(position);
+		NewsItem newsItem = listData.get(position);
 
 		holder.title.setText(newsItem.getTitle());
 		holder.content.setText(newsItem.getContent());
 		holder.date.setText(newsItem.getDate());
 		holder.source.setText(newsItem.getSource());
 
-		if (holder.img != null && newsItem.getListPictureUrl() != "") {
-			new ImageDownloaderTask(holder.img).execute(newsItem.getListPictureUrl());
+		if (holder.img != null && holder.img.getDrawable() == null) {
+			new ImageDownloaderTask(holder.img, "circle").execute("http://213.111.120.224/img/" + newsItem.getListPictureUrl());
 		}
-
-
 
 		//setting custom typeface
 		holder.title.setTypeface(tf);

@@ -1,5 +1,7 @@
 package com.vladsid.squasher.app.menu;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 
 import java.util.ArrayList;
@@ -14,11 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.vladsid.squasher.app.R;
 
+import static com.vladsid.squasher.app.MainActivity.getCroppedBitmap;
+
 public class MenuListAdapter extends BaseAdapter {
 
 	private Context context;
 	private ArrayList<MenuItem> menuItems;
 	private Typeface tf;
+	private View cView;
+
 
 	public MenuListAdapter(Context context, ArrayList<MenuItem> menuItems){
 		this.context = context;
@@ -42,18 +48,25 @@ public class MenuListAdapter extends BaseAdapter {
 		return position;
 	}
 
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 			convertView = mInflater.inflate(R.layout.menu_item, null);
 		}
+		cView = convertView;
 
 		ImageView imgIcon = (ImageView) convertView.findViewById(R.id.menuItemIcon);
 		TextView txtTitle = (TextView) convertView.findViewById(R.id.menuItemTitle);
 		TextView txtCount = (TextView) convertView.findViewById(R.id.counter);
 
-		imgIcon.setImageResource(menuItems.get(position).getIcon());
+		if(position != 0)
+			imgIcon.setImageResource(menuItems.get(position).getIcon());
+		else {
+			Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_account);
+			imgIcon.setImageBitmap(getCroppedBitmap(avatar));
+		}
 		txtTitle.setText(menuItems.get(position).getTitle());
 
 		//setting custom typeface

@@ -9,7 +9,7 @@
         android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
         <uses-permission android:name="android.permission.INTERNET" />
         <activity
-            android:name="com.vladsid.squasher.app.NewsActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

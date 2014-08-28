@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.vladsid.squasher.app.R;
-
-import static com.vladsid.squasher.app.FontOverrider.applyFont;
 
 public class NewsFragment extends Fragment {
 
@@ -17,11 +14,6 @@ public class NewsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.activity_news, container, false);
-
-		//overriding system font for whole layout
-		applyFont(this.getActivity(), rootView, "fonts/MyriadPro-Light.ttf");
-
-		return rootView;
+		return getView();
 	}
 }
